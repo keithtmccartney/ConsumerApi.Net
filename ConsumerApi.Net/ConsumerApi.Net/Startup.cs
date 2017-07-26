@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ConsumerApi.Net.Models;
+using ConsumerApi.Net.Interfaces;
+using ConsumerApi.Net.Repositories;
 
 namespace ConsumerApi.Net
 {
@@ -30,6 +32,7 @@ namespace ConsumerApi.Net
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TransactionContext>(x => x.UseInMemoryDatabase());
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
 
             // Add framework services.
             services.AddMvc();
